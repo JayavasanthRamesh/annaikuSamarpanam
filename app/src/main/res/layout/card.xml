@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="2dp"
+    android:layout_margin="2dp">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="140dp"
+        android:id="@+id/imageView2"
+        android:layout_alignParentLeft="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/violet"
+     />
+
+    <ImageView
+        android:layout_width="126dp"
+        android:layout_height="140dp"
+        android:id="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView2"
+        android:scaleType="centerCrop"
+     />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text sdfsdf s df sdf"
+        android:id="@+id/textView"
+        android:paddingTop="4dp"
+        android:textStyle="bold"
+        android:textColor="#ee7600"
+        android:textSize="12dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textView2"
+        android:textSize="10dp"
+        android:paddingLeft="10dp"
+        android:textColorHint="@color/cardview_shadow_end_color"
+        android:textStyle="italic"
+        android:textColor="@color/material_blue_grey_800"
+        android:layout_below="@+id/textView"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+
+
+</RelativeLayout>
+
+</android.support.v7.widget.CardView>
