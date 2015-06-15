@@ -1,8 +1,5 @@
 package com.seetha.kavithai.annaikusamarpanam;
 
-/**
- * Created by Jai on 5/12/2015.
- */
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -35,14 +32,14 @@ public class kavithaAdapter extends RecyclerView.Adapter<kavithaAdapter.ContactV
 
     @Override
     public void onBindViewHolder(ContactViewHolder contactViewHolder, int i) {
+
         final kavithai ci = list.get(i);
         contactViewHolder.object=ci;
         contactViewHolder.title.setText(ci.title);
         contactViewHolder.short_content.setText(ci.short_content);
         contactViewHolder.img.setImageDrawable(ctx.getResources().getDrawable(ci.image));
 
-        contactViewHolder.itemView.setOnClickListener(new View.OnClickListener()
-        {
+        contactViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                   @Override
                   public void onClick(View v) {
                       Intent intent=new Intent(ctx,displayActivity.class);
@@ -60,19 +57,8 @@ public class kavithaAdapter extends RecyclerView.Adapter<kavithaAdapter.ContactV
 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-
         View itemView;
-        if(stp%2==1) {
-            itemView = LayoutInflater.
-                    from(viewGroup.getContext()).
-                    inflate(R.layout.card, viewGroup, false);
-        }
-        else
-        {
-            itemView = LayoutInflater.
-                    from(viewGroup.getContext()).
-                    inflate(R.layout.card1, viewGroup, false);
-        }
+        itemView = (stp % 2 == 1) ? LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card, viewGroup, false) : LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card1, viewGroup, false);
         stp++;
         return new ContactViewHolder(itemView);
 
