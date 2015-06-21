@@ -48,6 +48,7 @@ public class kavithaAdapter extends RecyclerView.Adapter<kavithaAdapter.ContactV
                       data.putString("content",ci.long_content);
                       data.putInt("img",ci.image);
                       intent.putExtras(data);
+                      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                       ctx.startActivity(intent);
                   }
         }

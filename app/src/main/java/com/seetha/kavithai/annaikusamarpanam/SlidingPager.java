@@ -4,6 +4,7 @@ package com.seetha.kavithai.annaikusamarpanam;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SlidingPager extends Fragment {
+public class SlidingPager extends FragmentActivity {
 
     static class SamplePagerItem {
         private final CharSequence mTitle;
@@ -27,17 +28,6 @@ public class SlidingPager extends Fragment {
             mDividerColor = dividerColor;
         }
 
-        /**
-         * @return A new {@link Fragment} to be displayed by a {@link ViewPager}
-         */
-     //   Fragment createFragment() {
-         //   return ContentFragment.newInstance(mTitle, mIndicatorColor, mDividerColor);
-       // }
-
-        /**
-         * @return the title which represents this tab. In this sample this is used directly by
-         * {@link android.support.v4.view.PagerAdapter#getPageTitle(int)}
-         */
         CharSequence getTitle() {
             return mTitle;
         }
@@ -62,12 +52,8 @@ public class SlidingPager extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sliding_tab);
 
-        // BEGIN_INCLUDE (populate_tabs)
-        /**
-         * Populate our tab list with tabs. Each item contains a title, indicator color and divider
-         * color, which are used by {@link SlidingTabLayout}.
-         */
         mTabs.add(new SamplePagerItem(
                 "Tab 1", // Title
                 Color.BLUE, // Indicator color
@@ -91,37 +77,13 @@ public class SlidingPager extends Fragment {
                 Color.GREEN, // Indicator color
                 Color.GRAY // Divider color
         ));
-        // END_INCLUDE (populate_tabs)
-    }
 
-    /**
-     * Inflates the {@link View} which will be displayed by this {@link Fragment}, from the app's
-     * resources.
-     */
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_sliding_tab, container, false);
-    }
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager()));
 
-    // BEGIN_INCLUDE (fragment_onviewcreated)
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        // BEGIN_INCLUDE (setup_viewpager)
-        // Get the ViewPager and set it's PagerAdapter so that it can display items
-        mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        mViewPager.setAdapter(new SampleFragmentPagerAdapter(getChildFragmentManager()));
-        // END_INCLUDE (setup_viewpager)
-
-        // BEGIN_INCLUDE (setup_slidingtablayout)
-        // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had
-        // it's PagerAdapter set.
-        slidingTab = (SlidingTab) view.findViewById(R.id.sliding_tabs);
+        slidingTab = (SlidingTab) findViewById(R.id.sliding_tabs);
         slidingTab.setViewPager(mViewPager);
 
-        // BEGIN_INCLUDE (tab_colorizer)
-        // Set a TabColorizer to customize the indicator and divider colors. Here we just retrieve
-        // the tab at the position, and return it's set color
         slidingTab.setCustomTabColorizer(new SlidingTab.TabColorizer() {
 
             @Override
@@ -135,10 +97,7 @@ public class SlidingPager extends Fragment {
             }
 
         });
-        // END_INCLUDE (tab_colorizer)
-        // END_INCLUDE (setup_slidingtablayout)
     }
-    // END_INCLUDE (fragment_onviewcreated)
 
     class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
@@ -148,7 +107,8 @@ public class SlidingPager extends Fragment {
 
         @Override
         public Fragment getItem(int i) {
-            return mTabs.get(i).createFragment();
+            return new MainActivity();
+           // return mTabs.get(i).createFragment();
         }
 
         @Override
@@ -156,13 +116,10 @@ public class SlidingPager extends Fragment {
             return mTabs.size();
         }
 
-        // BEGIN_INCLUDE (pageradapter_getpagetitle)
-
         @Override
         public CharSequence getPageTitle(int position) {
             return mTabs.get(position).getTitle();
         }
-        // END_INCLUDE (pageradapter_getpagetitle)
 
     }
 

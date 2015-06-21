@@ -1,40 +1,46 @@
 package com.seetha.kavithai.annaikusamarpanam;
 
-import android.support.v7.app.ActionBarActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Fragment{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
+        View rootView = inflater.inflate(R.layout.activity_main, null);
+
+        RecyclerView recList = (RecyclerView) rootView.findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        kavithaAdapter ca = new kavithaAdapter(this,populateKavithai());
+        kavithaAdapter ca = new kavithaAdapter(getActivity().getApplicationContext(), populateKavithai());
         recList.setAdapter(ca);
 
+        return rootView;
     }
 
     private List<kavithai> populateKavithai() {
 
-        List<kavithai> kavithaiList=new ArrayList<kavithai>();
+        List<kavithai> kavithaiList=new ArrayList<>();
 
         /* first kavithai */
 
@@ -260,26 +266,4 @@ public class MainActivity extends ActionBarActivity {
         return kavithaiList;
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
