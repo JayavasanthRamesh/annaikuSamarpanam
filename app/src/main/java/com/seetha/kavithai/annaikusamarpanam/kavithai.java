@@ -1,7 +1,5 @@
 package com.seetha.kavithai.annaikusamarpanam;
 
-import android.graphics.drawable.Drawable;
-
 public class kavithai {
     public String title;
     public String short_content;

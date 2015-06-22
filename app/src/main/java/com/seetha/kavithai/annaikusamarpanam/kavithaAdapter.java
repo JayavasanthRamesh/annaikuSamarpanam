@@ -37,6 +37,7 @@ public class kavithaAdapter extends RecyclerView.Adapter<kavithaAdapter.ContactV
         contactViewHolder.object=ci;
         contactViewHolder.title.setText(ci.title);
         contactViewHolder.short_content.setText(ci.short_content);
+       // contactViewHolder.img.setImageResource(R.drawable.img1);
         contactViewHolder.img.setImageDrawable(ctx.getResources().getDrawable(ci.image));
 
         contactViewHolder.itemView.setOnClickListener(new View.OnClickListener() {

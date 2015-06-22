@@ -8,9 +8,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,25 +52,25 @@ public class SlidingPager extends FragmentActivity {
         setContentView(R.layout.activity_sliding_tab);
 
         mTabs.add(new SamplePagerItem(
-                "Tab 1", // Title
+                "முன்னுரை", // Title
                 Color.BLUE, // Indicator color
                 Color.GRAY // Divider color
         ));
 
         mTabs.add(new SamplePagerItem(
-                "Tab 2", // Title
+                "குறுங்கவிதைகள", // Title
                 Color.RED, // Indicator color
                 Color.GRAY // Divider color
         ));
 
         mTabs.add(new SamplePagerItem(
-                "Tab 3", // Title
+                "காதல்கவிகள்", // Title
                 Color.YELLOW, // Indicator color
                 Color.GRAY // Divider color
         ));
 
         mTabs.add(new SamplePagerItem(
-                "Tab 4", // Title
+                "பிற கவிதைகள்", // Title
                 Color.GREEN, // Indicator color
                 Color.GRAY // Divider color
         ));
@@ -107,8 +104,17 @@ public class SlidingPager extends FragmentActivity {
 
         @Override
         public Fragment getItem(int i) {
-            return new MainActivity();
-           // return mTabs.get(i).createFragment();
+            switch (i) {
+                case 0:
+                    return new Tab1();
+                case 1:
+                    return new Tab2();
+                case 2:
+                    return new Tab3();
+                case 3:
+                    return new Tab4();
+            }
+            return new Tab1();
         }
 
         @Override
