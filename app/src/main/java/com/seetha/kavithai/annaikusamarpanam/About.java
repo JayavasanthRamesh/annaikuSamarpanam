@@ -48,7 +48,7 @@ public class About extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        intent.setData(Uri.parse("https://github.com/faizaanceg/SYLAB-DOWNLOADER"));
+                        intent.setData(Uri.parse("https://github.com/JayavasanthRamesh/annaikuSamarpanam"));
                         break;
                     case 2:
                         intent.setData(Uri.parse("https://www.facebook.com/faizaan.ceg"));
