@@ -1,88 +1,106 @@
 package com.seetha.kavithai.annaikusamarpanam;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.content.Context;
+import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.content.Context;
-import android.widget.Toast;
 
 import java.util.List;
 
-public class kavithaAdapter extends RecyclerView.Adapter<kavithaAdapter.ContactViewHolder> {
 
-    private List<kavithai> list;
-    private Context ctx;
-    static int stp=0;
+public class kavithaAdapter implements ListAdapter {
 
-    public kavithaAdapter(Context context,List<kavithai> List) {
-        this.ctx=context;
-        this.list = List;
-    }
+    private Context context;
+    private List<kavithai> values;
 
-
-    @Override
-    public int getItemCount() {
-        return list.size();
+    kavithaAdapter(Context c, List<kavithai> v){
+        context = c;
+        values = v;
     }
 
     @Override
-    public void onBindViewHolder(ContactViewHolder contactViewHolder, int i) {
-
-        final kavithai ci = list.get(i);
-        contactViewHolder.object=ci;
-        contactViewHolder.title.setText(ci.title);
-        contactViewHolder.short_content.setText(ci.short_content);
-       // contactViewHolder.img.setImageResource(R.drawable.img1);
-        contactViewHolder.img.setImageDrawable(ctx.getResources().getDrawable(ci.image));
-
-        contactViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                      Intent intent=new Intent(ctx,displayActivity.class);
-                      Bundle data=new Bundle();
-                      data.putString("title",ci.title);
-                      data.putString("content",ci.long_content);
-                      data.putInt("img",ci.image);
-                      intent.putExtras(data);
-                      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                      ctx.startActivity(intent);
-                  }
-        }
-
-        );
+    public boolean isEnabled(int position) {
+        return true;
     }
 
     @Override
-    public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public boolean areAllItemsEnabled() {
+        return true;
+    }
+
+    @Override
+    public void registerDataSetObserver(DataSetObserver observer) {
+
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position % 2;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView;
-        itemView = (stp % 2 == 1) ? LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card, viewGroup, false) : LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card1, viewGroup, false);
-        stp++;
-        return new ContactViewHolder(itemView);
 
-    }
-
-    public static class ContactViewHolder extends RecyclerView.ViewHolder  {
-
-        protected TextView title;
-        protected TextView long_content;
-        protected TextView short_content;
-        protected ImageView img;
-        private kavithai object;
-
-        public ContactViewHolder(View v) {
-            super(v);
-            title =  (TextView) v.findViewById(R.id.textView);
-            short_content = (TextView)  v.findViewById(R.id.textView2);
-            img=(ImageView) v.findViewById(R.id.imageView);
+        switch (position % 2) {
+            case 1:
+                itemView =  inflater.inflate(R.layout.card, parent, false);
+                break;
+            default:
+                itemView =  inflater.inflate(R.layout.card1, parent, false);
         }
 
+        TextView title = (TextView) itemView.findViewById(R.id.textView);
+        title.setText(values.get(position).title);
 
+        TextView content = (TextView) itemView.findViewById(R.id.textView2);
+        content.setText(values.get(position).short_content);
+
+        ImageView image = (ImageView) itemView.findViewById(R.id.imageView);
+        image.setImageDrawable(context.getResources().getDrawable(values.get(position).image));
+
+        return itemView;
     }
 
+    @Override
+    public int getCount() {
+        return values.size();
+    }
 
+    @Override
+    public Object getItem(int position) {
+        return values.get(position);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
 }
+

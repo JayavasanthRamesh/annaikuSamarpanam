@@ -58,7 +58,7 @@ public class SlidingPager extends FragmentActivity {
         ));
 
         mTabs.add(new SamplePagerItem(
-                "குறுங்கவிதைகள", // Title
+                "குறுங்கவிதைகள்", // Title
                 Color.RED, // Indicator color
                 Color.GRAY // Divider color
         ));

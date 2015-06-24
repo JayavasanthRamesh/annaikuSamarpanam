@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class displayActivity extends ActionBarActivity {
 
@@ -14,17 +15,19 @@ public class displayActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display);
-        Bundle cont=this.getIntent().getExtras();
+        Bundle cont = this.getIntent().getExtras();
 
-        TextView title =  (TextView) this.findViewById(R.id.textView);
+        TextView title = (TextView) this.findViewById(R.id.textView);
         TextView content = (TextView)  this.findViewById(R.id.textView3);
-        ImageView img=(ImageView) this.findViewById(R.id.imageView);
+        ImageView img = (ImageView) this.findViewById(R.id.imageView);
 
         title.setText(cont.getString("title"));
         content.setText(cont.getString("content"));
-        img.setImageDrawable(getResources().getDrawable(cont.getInt("img")));
+        img.setImageResource(cont.getInt("img"));
+        //img.setImageDrawable(getResources().getDrawable(cont.getInt("img")));
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -36,11 +39,8 @@ public class displayActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
 
-        return super.onOptionsItemSelected(item);
     }
 }
 

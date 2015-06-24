@@ -1,5 +1,6 @@
 package com.seetha.kavithai.annaikusamarpanam;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.view.ViewGroup;
 
 import com.seetha.kavithai.annaikusamarpanam.R;
@@ -17,6 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tab3 extends Fragment {
+
+    List<kavithai> kavithaiList;
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,21 +37,35 @@ public class Tab3 extends Fragment {
 
         View rootView = inflater.inflate(R.layout.activity_main, null);
 
-        RecyclerView recList = (RecyclerView) rootView.findViewById(R.id.cardList);
-        recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
+        ListView recList = (ListView) rootView.findViewById(R.id.cardList);
 
         kavithaAdapter ca = new kavithaAdapter(getActivity().getApplicationContext(), populateKavithai());
         recList.setAdapter(ca);
+
+        recList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent dispIntent = new Intent(getActivity().getApplicationContext(), displayActivity.class);
+                int img = kavithaiList.get(position).image;
+                String title = kavithaiList.get(position).title;
+                String content = kavithaiList.get(position).long_content;
+                dispIntent.putExtra("title", title);
+                dispIntent.putExtra("content", content);
+                dispIntent.putExtra("img", img);
+                dispIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(dispIntent);
+
+
+            }
+        });
 
         return rootView;
     }
 
     private List<kavithai> populateKavithai() {
 
-        List<kavithai> kavithaiList=new ArrayList<>();
+        kavithaiList=new ArrayList<>();
 
         kavithai temp;
          /* 52nd kavithai */

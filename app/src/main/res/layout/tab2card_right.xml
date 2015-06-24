@@ -15,7 +15,7 @@
 
         <ImageView
             android:layout_width="12dp"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:id="@+id/imageView2"
             android:scaleType="centerCrop"
             android:src="@drawable/orange"
@@ -30,7 +30,7 @@
             android:paddingTop="20dp"
             android:textStyle="bold"
             android:textColor="#663399"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:paddingRight="20dp"
             android:paddingBottom="10dp"
             android:layout_alignParentTop="true"
@@ -43,7 +43,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/textView2"
-            android:textSize="10sp"
+            android:textSize="11sp"
             android:paddingRight="20dp"
             android:textColorHint="@color/cardview_shadow_end_color"
             android:textStyle="italic"

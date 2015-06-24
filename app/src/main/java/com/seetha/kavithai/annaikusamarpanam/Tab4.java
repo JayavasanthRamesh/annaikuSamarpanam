@@ -1,5 +1,6 @@
 package com.seetha.kavithai.annaikusamarpanam;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,27 +22,41 @@ import java.util.List;
 
 public class Tab4 extends Fragment {
 
+    List<kavithai> kavithaiList;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.activity_main, null);
 
-        RecyclerView recList = (RecyclerView) rootView.findViewById(R.id.cardList);
-        recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
+        ListView recList = (ListView) rootView.findViewById(R.id.cardList);
 
         kavithaAdapter ca = new kavithaAdapter(getActivity().getApplicationContext(), populateKavithai());
         recList.setAdapter(ca);
 
+        recList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent dispIntent = new Intent(getActivity().getApplicationContext(), displayActivity.class);
+                int img = kavithaiList.get(position).image;
+                String title = kavithaiList.get(position).title;
+                String content = kavithaiList.get(position).long_content;
+                dispIntent.putExtra("title", title);
+                dispIntent.putExtra("content", content);
+                dispIntent.putExtra("img", img);
+                dispIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(dispIntent);
+
+
+            }
+        });
         return rootView;
     }
 
     private List<kavithai> populateKavithai() {
 
-        List<kavithai> kavithaiList = new ArrayList<>();
+       kavithaiList = new ArrayList<>();
 
         kavithai temp;
 
@@ -161,7 +178,12 @@ public class Tab4 extends Fragment {
 
         temp.title=" எது எல்லை";
 
-        temp.long_content=
+        temp.short_content = "வயதுமுதிர்ந்த பின்னரும்\n" +
+                "முழுவளர்ச்சியை எட்டாமல்\n" +
+                "வளர்ந்து கொண்டிருக்கிறது\n" +
+                "உன்மீதான எனதுகாதல்...\n";
+
+                temp.long_content=
                 "\n" +
                         "ஒரே புள்ளியில்\n" +
                         "சுற்றிக்கொண்டிருக்கும்\n" +
@@ -194,6 +216,10 @@ public class Tab4 extends Fragment {
 
         temp.title=" நீங்காத நினைவுகள்";
 
+        temp.short_content = "மழைநின்ற பின்னர் \n" +
+                "மரத்தின் தூரல்\n" +
+                "நிலத்திற்கு... \n";
+
         temp.long_content=
                 "\n" +
                         "சூரியன் மறைந்தபின்னர்\n" +
@@ -218,6 +244,10 @@ public class Tab4 extends Fragment {
 
         temp.title="காதலின் மொழி";
 
+    temp.short_content = "உலகமொழிகள் அனைத்தையும்\n" +
+            "கற்றுக்கொண்டேன்\n" +
+            "என்காதலை அவளிடம் \n" +
+            "கூறுவதற்க";
 
         temp.long_content=
                 "\n" +
@@ -241,6 +271,11 @@ public class Tab4 extends Fragment {
 
         temp.title="சொர்க்கமும் நரகமும்";
 
+        temp.short_content = "அனைவருக்கும்\n" +
+                "இறந்த பின்னர்தான் \n" +
+                "சொர்க்கமும் நரகமும்...\n" +
+                "எனக்கோ, நீ\n";
+
         temp.long_content=
                 "\n" +
                         "அனைவருக்கும்\n" +
@@ -262,6 +297,9 @@ public class Tab4 extends Fragment {
         temp=new kavithai();
 
         temp.title="கடலும்,காதலும்";
+
+        temp.short_content = "சூறாவளியாய் துன்பங்கள்\n" +
+                "சுழற்றி அடித்தாலும்,\n";
 
         temp.long_content=
                 "\n" +
