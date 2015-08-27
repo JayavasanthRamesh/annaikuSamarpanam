@@ -1,14 +1,16 @@
 package com.seetha.kavithai.annaikusamarpanam;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class displayActivity extends ActionBarActivity {
+public class DisplayPoem extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,10 @@ public class displayActivity extends ActionBarActivity {
 
         title.setText(cont.getString("title"));
         content.setText(cont.getString("content"));
-        img.setImageResource(cont.getInt("img"));
-        //img.setImageDrawable(getResources().getDrawable(cont.getInt("img")));
-
+        if(cont.getInt("img") == 0)
+            img.setImageResource(R.drawable.img4);
+        else
+            img.setImageResource(cont.getInt("img"));
     }
 
     @Override
@@ -37,10 +40,26 @@ public class displayActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        return super.onOptionsItemSelected(item);
 
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+    }
 
+    public void gotoPayPal(View v) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+
+        intent.setData(Uri.parse("https://www.payumoney.com/paybypayumoney/#/F68F577F6F0E7DB2665D9F66CBE68AFD"));
+        startActivity(intent);
+    }
+
+    public void gotoFB(View v) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+
+        intent.setData(Uri.parse("https://www.facebook.com/faizaan.ceg"));
+        startActivity(intent);
     }
 }
 

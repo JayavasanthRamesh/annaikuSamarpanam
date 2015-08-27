@@ -18,7 +18,7 @@
             android:layout_height="100dp"
             android:id="@+id/imageView2"
             android:scaleType="centerCrop"
-            android:src="@drawable/orange"
+            android:src="@drawable/blue"
             android:layout_alignParentRight="true"
             />
 

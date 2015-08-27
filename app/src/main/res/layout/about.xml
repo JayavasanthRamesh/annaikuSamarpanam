@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"/>
-    <ListView
-        android:id="@+id/aboutView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:divider="#FFFFFFFF"
-        android:dividerHeight="5dip">
-    </ListView>
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="உருவாக்கியவர்"
+            android:id="@+id/textView4"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="101dp"
+            android:textColor="#ff000000"
+            android:textIsSelectable="false"
+            android:textSize="20sp" />
+
+        <Button
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:id="@+id/imageView3"
+            android:layout_below="@+id/textView4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:onClick="gotoFB"
+            android:background="@drawable/fb" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="முஹம்மத் ஃபைசான்"
+            android:id="@+id/textView5"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:textColor="#000"
+            android:layout_below="@+id/imageView3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView5"
+            android:text="KHF ஸ்டூடியோ"
+            android:layout_centerHorizontal="true"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:layout_marginTop="15dp"/>
+    </RelativeLayout>
+</ScrollView>

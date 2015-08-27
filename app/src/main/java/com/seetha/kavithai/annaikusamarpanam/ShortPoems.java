@@ -1,18 +1,21 @@
 package com.seetha.kavithai.annaikusamarpanam;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+public class ShortPoems extends Fragment{
 
-public class Tab2 extends Fragment{
+    List<ShortPoem> kavithaiList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,21 +29,39 @@ public class Tab2 extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_tab2, null);
 
         ListView recList = (ListView) rootView.findViewById(R.id.listView);
-        Tab2Adapter ca = new Tab2Adapter(getActivity().getApplicationContext(), populateKavithai());
+        ShortPoemAdapter ca = new ShortPoemAdapter(getActivity().getApplicationContext(), getActivity().getResources(), populateKavithai());
         recList.setAdapter(ca);
+
+        recList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent dispIntent = new Intent(getActivity().getApplicationContext(), DisplayPoem.class);
+                int img = kavithaiList.get(position).image;
+                String title = kavithaiList.get(position).title;
+                String content = kavithaiList.get(position).content;
+                dispIntent.putExtra("title", title);
+                dispIntent.putExtra("content", content);
+                dispIntent.putExtra("img", img);
+                dispIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(dispIntent);
+
+            }
+        });
 
         return rootView;
     }
 
-    private List<Tab2Kavithai> populateKavithai() {
+    private List<ShortPoem> populateKavithai() {
 
-        List<Tab2Kavithai> kavithaiList = new ArrayList<>();
+        kavithaiList = new ArrayList<>();
 
-        /* first Tab2Kavithai */
+        /* first ShortPoem */
 
-        Tab2Kavithai temp = new Tab2Kavithai();
+        ShortPoem temp = new ShortPoem();
 
         temp.title = "ஆயுதம்";
+
+        temp.image = R.drawable.img1;
 
         temp.content =
                 "காகிதத்தாளே \n" +
@@ -50,11 +71,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* second Tab2Kavithai */
+        /* second ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "நிலவு";
+
+        temp.image = R.drawable.img2;
 
         temp.content =
                 "உடையின்மையால் தான்\n" +
@@ -63,11 +86,13 @@ public class Tab2 extends Fragment{
 
         kavithaiList.add(temp);
 
-        /* third Tab2Kavithai */
+        /* third ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "விதவை";
+
+        temp.image = R.drawable.img3;
 
         temp.content =
                 "கணவனை இழந்துவிட்டாளோ\n" +
@@ -76,11 +101,13 @@ public class Tab2 extends Fragment{
 
         kavithaiList.add(temp);
 
-        /* fourth Tab2Kavithai */
+        /* fourth ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "காதலித்துப்பார்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "அரிச்சந்திரனும்\n" +
@@ -90,11 +117,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* fifth Tab2Kavithai */
+        /* fifth ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "தல";
+
+        temp.image = R.drawable.img5;
 
         temp.content =
                 "பட்டமே வாங்காதவனுக்கு\n" +
@@ -103,11 +132,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* sixth Tab2Kavithai */
+        /* sixth ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "கல்லறை ";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "ஓர் அங்குலத்தில்\n" +
@@ -117,11 +148,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /*  seventh Tab2Kavithai */
+        /*  seventh ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "புகைப்படம்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "இறந்தபின்னரும் \n" +
@@ -131,11 +164,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /*  eighth Tab2Kavithai */
+        /*  eighth ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "புகையிலை";
+
+        temp.image = R.drawable.img8;
 
         temp.content =
                 "எனக்கு \n" +
@@ -144,11 +179,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* ninth Tab2Kavithai */
+        /* ninth ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "கர்ப்பப்பை ";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "என் இதயப்பையும்\n" +
@@ -158,11 +195,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* tenth Tab2Kavithai */
+        /* tenth ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "பூமித்தாயும் வருணனும்";
+
+        temp.image = R.drawable.img10;
 
         temp.content =
                 "அவளின் வெட்டுக்காயத்துக்கு மருந்தானது \n" +
@@ -171,11 +210,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* eleventh Tab2Kavithai */
+        /* eleventh ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "மனமே நிறம்";
+
+        temp.image = R.drawable.img11;
 
         temp.content =
                 "கறுப்பு மனுசனுக்கு\n" +
@@ -184,11 +225,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 12th Tab2Kavithai */
+        /* 12th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "நேசம்";
+
+        temp.image = R.drawable.img12;
 
         temp.content =
                 "அவள் கணவனை \n" +
@@ -197,11 +240,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 13th Tab2Kavithai */
+        /* 13th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "காதல்கவிதை";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "காதலைப்பற்றி \n" +
@@ -213,11 +258,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 14th Tab2Kavithai */
+        /* 14th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "கோழைப்பெண்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "தற்கொலை என்றபெயரில்\n" +
@@ -227,11 +274,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 15th Tab2Kavithai */
+        /* 15th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "நானும் பூக்களும்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "உன்னைப்பார்க்கும் முன்\n" +
@@ -244,11 +293,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 16th Tab2Kavithai */
+        /* 16th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "அழகு";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "பூமிக்கு ஒரு நிலவுதான்\n" +
@@ -259,11 +310,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 17th Tab2Kavithai */
+        /* 17th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "வானவில்";
+
+        temp.image = R.drawable.img17;
 
         temp.content =
                 "வானவில் என்மீது போர்வையாக\n" +
@@ -273,11 +326,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 18th Tab2Kavithai */
+        /* 18th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "தினமும் பிறக்கிறாள்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "உனது தாயின் கருவறையிலிருந்து\n" +
@@ -292,11 +347,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 19th Tab2Kavithai */
+        /* 19th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "சாதியம்";
+
+        temp.image = R.drawable.img19;
 
         temp.content =
                 "கூகுள் தேடலும் \n" +
@@ -305,11 +362,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 20th Tab2Kavithai */
+        /* 20th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "நீர்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "உதிரத்தின் நிறம் சிவப்பு \n" +
@@ -321,11 +380,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 21st Tab2Kavithai */
+        /* 21st ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "புத்தகச்சுமை";
+
+        temp.image = R.drawable.img21;
 
         temp.content =
                 "பள்ளிக்குச்செல்ல உணவு\n" +
@@ -336,11 +397,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 22nd Tab2Kavithai */
+        /* 22nd ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "அடிமைத்தனம்,கறுப்புப்பணம்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "வெள்ளையர்கள் கருப்பர்களை ஒதுக்கினான் ;\n" +
@@ -350,11 +413,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 23rd Tab2Kavithai */
+        /* 23rd ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "ஆவதும் அழிவதும் பெண்ணாலே";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "அன்னை \n+" +
@@ -369,11 +434,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /*  24th Tab2Kavithai */
+        /*  24th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "மறைவதில்லை";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "கனவுகள் கண்களுக்குள் \n" +
@@ -384,11 +451,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 25th Tab2Kavithai */
+        /* 25th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "மறைந்துபோவதில்லை";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "என்தோட்டத்தில்\n" +
@@ -401,11 +470,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /*  26th Tab2Kavithai */
+        /*  26th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "நம்பிக்கை";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "இரு கைகளிருந்தும்\n" +
@@ -415,11 +486,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 27th  Tab2Kavithai */
+        /* 27th  ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "தொழிற்கல்வி";
+
+        temp.image = R.drawable.img27;
 
         temp.content =
                 "கல்விக்கூடங்கள்\n" +
@@ -428,11 +501,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /*  28th Tab2Kavithai */
+        /*  28th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "அமிர்தம்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "கொடிய நஞ்சும்\n" +
@@ -442,11 +517,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 29th Tab2Kavithai */
+        /* 29th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "பணத்தாசை";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "காந்தியின் மீது\n" +
@@ -456,11 +533,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 30th Tab2Kavithai */
+        /* 30th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "அம்மா";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "கோழை போன்றிருப்பவளின்\n" +
@@ -470,11 +549,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 31st Tab2Kavithai */
+        /* 31st ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "விண்மீன்கள்";
+
+        temp.image = R.drawable.img31;
 
         temp.content =
                 "காலையில் கோலம்போட\n" +
@@ -484,11 +565,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 32nd Tab2Kavithai */
+        /* 32nd ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "நிகழ்கால உண்மை";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "படித்துபெற்ற பட்டத்தைவிட\n" +
@@ -498,11 +581,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /*  33rd Tab2Kavithai */
+        /*  33rd ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "காதலின் மகிமை";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "காதலின் மகிமை\n" +
@@ -512,11 +597,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 34th Tab2Kavithai */
+        /* 34th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "விந்தை உலகம்";
+
+        temp.image = R.drawable.img34;
 
         temp.content =
                 "இவ்வுலகை\n" +
@@ -527,11 +614,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 35th  Tab2Kavithai */
+        /* 35th  ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "மரத்தின் மறுபிறவி";
+
+        temp.image = R.drawable.img35;
 
         temp.content =
                 "ஒரு மரத்தின் இறப்பில்\n" +
@@ -540,11 +629,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-        /* 36th Tab2Kavithai */
+        /* 36th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "மரங்களின் அவ(ஓ)லம்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "படுகொலையால்\n" +
@@ -553,11 +644,13 @@ public class Tab2 extends Fragment{
 
         kavithaiList.add(temp);
 
-                /* 37th Tab2Kavithai */
+                /* 37th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "மழைக்குப்பின் ";
+
+        temp.image = R.drawable.img37;
 
         temp.content =
                 "மழையில் நனைந்ததால் \n" +
@@ -566,11 +659,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-                /* 38th Tab2Kavithai */
+                /* 38th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "இசைஞானிகள்";
+
+        temp.image = R.drawable.img38;
 
         temp.content =
                 "இலவசமாக இசைக்கச்சேரி\n" +
@@ -579,11 +674,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-                /* 39th Tab2Kavithai */
+                /* 39th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "கிராமத்து சொத்து";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "வானுயர்ந்த கட்டிடங்களுக்கிடையே \n" +
@@ -593,11 +690,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-                /* 40th Tab2Kavithai */
+                /* 40th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "(அ)நீதியா...?";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "ஒசோனை விட\n" +
@@ -611,11 +710,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-                /* 41st Tab2Kavithai */
+                /* 41st ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "‘குடி’மகன்";
+
+        temp.image = R.drawable.img_41;
 
         temp.content =
                 "குடிமகன்  \n" +
@@ -626,11 +727,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-                /* 42nd Tab2Kavithai */
+                /* 42nd ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "எப்போது இழக்கிறாய்?";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "நீ இழந்ததை \n" +
@@ -642,11 +745,13 @@ public class Tab2 extends Fragment{
 
         kavithaiList.add(temp);
 
-                /* 43rd Tab2Kavithai */
+                /* 43rd ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "முயற்சி";
+
+        temp.image = R.drawable.img43;
 
         temp.content =
                 "முட்டி மோதி பூமியை\n" +
@@ -659,11 +764,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-               /* 44th Tab2Kavithai */
+               /* 44th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "தவறு தந்த பாடம்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "தவறுகளை மறந்துவிடு;\n" +
@@ -673,11 +780,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-                /* 45th Tab2Kavithai */
+                /* 45th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "இருநொடிகள்";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "இருநொடிகள் எடுத்துக்கொண்டாள்\n" +
@@ -687,11 +796,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-                 /* 46th Tab2Kavithai */
+                 /* 46th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "நூதன திருட்டு";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "உன் பார்வையில்\n" +
@@ -705,11 +816,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-                /* 47th Tab2Kavithai */
+                /* 47th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "விபச்சாரமன்று";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "விற்பனைக்காக உடைகளை\n" +
@@ -719,11 +832,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-                 /* 48th Tab2Kavithai */
+                 /* 48th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "காத்திருக்கிறேன்";
+
+        temp.image = R.drawable.img48;
 
         temp.content =
                 "உனது வருகைக்காக\n" +
@@ -735,11 +850,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-                /* 49th Tab2Kavithai */
+                /* 49th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "காட்சிப்பிழை";
+
+        temp.image = R.drawable.img4;
 
         temp.content =
                 "காதல் இல்லாத\n" +
@@ -755,11 +872,13 @@ public class Tab2 extends Fragment{
         kavithaiList.add(temp);
 
 
-              /* 50th Tab2Kavithai */
+              /* 50th ShortPoem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title = "மழை";
+
+        temp.image = R.drawable.img50;
 
         temp.content =
                 "மரங்களைவெட்டியதால்\n" +
@@ -769,11 +888,13 @@ public class Tab2 extends Fragment{
                         "மரம் வெட்டுபட்டதைக்கண்டு...\n";
         kavithaiList.add(temp);
 
-            /* 51st kavithai */
+            /* 51st Poem */
 
-        temp = new Tab2Kavithai();
+        temp = new ShortPoem();
 
         temp.title="குழந்தையின் தொழில்";
+
+        temp.image = R.drawable.img51;
 
         temp.content=
                 "கூலியில்லாத வேலைக்கு \n" +

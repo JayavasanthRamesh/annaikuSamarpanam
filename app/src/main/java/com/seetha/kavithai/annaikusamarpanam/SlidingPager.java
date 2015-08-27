@@ -52,6 +52,12 @@ public class SlidingPager extends FragmentActivity {
         setContentView(R.layout.activity_sliding_tab);
 
         mTabs.add(new SamplePagerItem(
+                "சமர்ப்பணம்",
+                Color.RED,
+                Color.GRAY
+        ));
+
+        mTabs.add(new SamplePagerItem(
                 "முன்னுரை", // Title
                 Color.BLUE, // Indicator color
                 Color.GRAY // Divider color
@@ -64,7 +70,7 @@ public class SlidingPager extends FragmentActivity {
         ));
 
         mTabs.add(new SamplePagerItem(
-                "காதல்கவிகள்", // Title
+                "காதல் கவிதைகள்", // Title
                 Color.YELLOW, // Indicator color
                 Color.GRAY // Divider color
         ));
@@ -73,6 +79,18 @@ public class SlidingPager extends FragmentActivity {
                 "பிற கவிதைகள்", // Title
                 Color.GREEN, // Indicator color
                 Color.GRAY // Divider color
+        ));
+
+        mTabs.add(new SamplePagerItem(
+                "தானம்", //Title
+                Color.LTGRAY, //Indicator color
+                Color.GRAY //Divider color
+        ));
+
+        mTabs.add(new SamplePagerItem(
+                "இதை பற்றி",
+                Color.CYAN,
+                Color.GRAY
         ));
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -106,15 +124,21 @@ public class SlidingPager extends FragmentActivity {
         public Fragment getItem(int i) {
             switch (i) {
                 case 0:
-                    return new Tab1();
+                    return new Samarpanam();
                 case 1:
-                    return new Tab2();
+                    return new Summary();
                 case 2:
-                    return new Tab3();
+                    return new ShortPoems();
                 case 3:
-                    return new Tab4();
+                    return new LovePoems();
+                case 4:
+                    return new OtherPoems();
+                case 5:
+                    return new Donation();
+                case 6:
+                    return new About();
             }
-            return new Tab1();
+            return new Summary();
         }
 
         @Override

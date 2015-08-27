@@ -16,6 +16,8 @@
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
             android:paddingLeft="50dp"
             android:paddingBottom="20dp"/>
+
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -24,19 +26,15 @@
             android:textSize="14sp"
             />
 
-        <Button
-            android:id="@+id/aboutBtn"
-            android:text="About"
-            android:layout_marginLeft="80dp"
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#53C1FF"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
 
-        <Button
-            android:id="@+id/donateBtn"
-            android:text="Donate"
-            android:layout_marginLeft="80dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 
 
