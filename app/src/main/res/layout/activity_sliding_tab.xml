@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.seetha.kavithai.annaikusamarpanam.SlidingTab
+    <com.khf.kavithai.annaikusamarpanam.SlidingTab
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -15,5 +15,13 @@
         android:layout_height="0px"
         android:layout_weight="1"
         android:background="@android:color/white" />
+
+
+    <LinearLayout
+        android:id="@+id/donations_activity_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
 
 </LinearLayout>

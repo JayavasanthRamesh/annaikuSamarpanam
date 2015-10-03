@@ -1,0 +1,17 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+    tools:context="com.khf.kavithai.annaikusamarpanam.Quotes">
+
+    <TextView
+        android:id="@+id/quotes"
+        android:textSize="15sp"
+        android:textColor="#000"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</ScrollView>

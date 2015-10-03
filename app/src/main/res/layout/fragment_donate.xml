@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     >
+        <TextView
+            android:id="@+id/donate"
+            android:textSize="14sp"
+            android:textColor="#000"
+            android:paddingBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FF000000"
-        android:textSize="14sp"
-        />
-
-    <Button
-        android:id="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/textView"
-        android:layout_width="180dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/paypal"
-        android:onClick="gotoPayPal" />
+        <Button
+            android:onClick="gotoBlog"
+            android:layout_below="@id/donate"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/donate"
+            android:layout_width="287dp"
+            android:layout_height="81dp" />
 
 </RelativeLayout>

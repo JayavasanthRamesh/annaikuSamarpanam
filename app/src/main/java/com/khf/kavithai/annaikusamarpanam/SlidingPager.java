@@ -1,13 +1,15 @@
-package com.seetha.kavithai.annaikusamarpanam;
+package com.khf.kavithai.annaikusamarpanam;
 
-
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +39,6 @@ public class SlidingPager extends FragmentActivity {
             return mDividerColor;
         }
     }
-
-    static final String LOG_TAG = "SlidingTabsColorsFragment";
 
     private SlidingTab slidingTab;
 
@@ -70,15 +70,21 @@ public class SlidingPager extends FragmentActivity {
         ));
 
         mTabs.add(new SamplePagerItem(
-                "காதல் கவிதைகள்", // Title
+                "பிற கவிதைகள்", // Title
                 Color.YELLOW, // Indicator color
                 Color.GRAY // Divider color
         ));
 
         mTabs.add(new SamplePagerItem(
-                "பிற கவிதைகள்", // Title
+                "காதல் கவிதைகள்", // Title
                 Color.GREEN, // Indicator color
                 Color.GRAY // Divider color
+        ));
+
+        mTabs.add(new SamplePagerItem(
+                "எனது பொன்மொழிகள்",
+                Color.MAGENTA,
+                Color.GRAY
         ));
 
         mTabs.add(new SamplePagerItem(
@@ -130,12 +136,14 @@ public class SlidingPager extends FragmentActivity {
                 case 2:
                     return new ShortPoems();
                 case 3:
-                    return new LovePoems();
-                case 4:
                     return new OtherPoems();
+                case 4:
+                    return new LovePoems();
                 case 5:
-                    return new Donation();
+                    return new Quotes();
                 case 6:
+                    return new Donation();
+                case 7:
                     return new About();
             }
             return new Summary();
@@ -152,5 +160,26 @@ public class SlidingPager extends FragmentActivity {
         }
 
     }
+
+    public void gotoBlog(View v) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setData(Uri.parse("http://annaikusamarppanam.blogspot.in"));
+        startActivity(intent);
+    }
+
+    public void gotoFB(View v) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setData(Uri.parse("https://www.facebook.com/faizaan.ceg"));
+        startActivity(intent);
+    }
+
+
 
 }
